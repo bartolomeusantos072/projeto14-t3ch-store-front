@@ -1,4 +1,4 @@
-import { LoginGroup, LoginTitle, LoginInput , LoginDivInput } from "./style"
+import { LoginGroup, LoginTitle, LoginInput , LoginDivInput , LoginEntry} from "./style"
 export default function Login() {
     return (
         <LoginGroup>
@@ -7,6 +7,7 @@ export default function Login() {
                 <LoginInput type="text" placeholder="E-mail" ></LoginInput>
                 <LoginInput type="text" placeholder="Password" ></LoginInput>
             </LoginDivInput>
+            <button><LoginEntry>Entrar</LoginEntry></button>
         </LoginGroup>
     )
 }
