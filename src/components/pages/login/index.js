@@ -11,6 +11,7 @@ import TokenContext from '../../../contexts/TokenContext';
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error , setError] = useState("")
     const { setToken } = useContext(TokenContext)
     const navigate = useNavigate()
     async function sendLogin(e) {
@@ -23,6 +24,7 @@ export default function Login() {
              navigate("/home")
 
         } catch (error) {
+            setError(error.response.data)
             swal(error.response.data , "preencha corretamente" , "error") 
         }
     }
@@ -35,12 +37,14 @@ export default function Login() {
                     type="text"
                     placeholder="E-mail"
                     value={email}
+                    cor={error? "#FFDAB9" : "#FFFAF0"}
                     onChange={e => setEmail(e.target.value)}
                 ></LoginInput>
                 <LoginInput
                     type="text"
                     placeholder="Password"
                     value={password}
+                    cor={error? "#FFDAB9" : "#FFFAF0"}
                     onChange={e => setPassword(e.target.value)} >
                 </LoginInput>
             </LoginDivInput>

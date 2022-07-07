@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { useState } from "react";
+import { useState  } from "react";
 import swal from 'sweetalert';
+
 import { RegisterGroup, RegisterTitle, RegisterInput, RegisterDivInput, RegisterSpan } from "./style.js"
 
 
@@ -13,7 +14,9 @@ export default function Register() {
         password: "",
         confirmPassword: ""
     })
+   
     const [error , setError] = useState("")
+    
     const navigate = useNavigate()
 
     async function creatUser(e) {
@@ -24,16 +27,19 @@ export default function Register() {
             "password":user.password,
             "confirmPassword": user.confirmPassword
         };
+
         try {
              await axios.post('http://localhost:5009/sign-up', body);
             navigate("/")
            
 
         } catch (error) {
+            console.log(error)
             setError(error.response.data)
            swal(error.response.data , "preencha corretamente" , "error") 
         }
     }
+
 
  
     return (
