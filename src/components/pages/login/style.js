@@ -28,7 +28,7 @@ const LoginTitle = styled.h1`
 font-family: "Saira Stencil One";
 color: #00FF7A;
 font-size: 36px;
-margin-bottom: 5%;
+margin-bottom: 4%;
 `
 
 const LoginInput = styled.input`
