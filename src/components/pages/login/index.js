@@ -21,7 +21,7 @@ export default function Login() {
             setToken(data.token)
 
         } catch (error) {
-            console.error('Deu erro ao fazer o login');
+            console.error(error);
         }
     }
 

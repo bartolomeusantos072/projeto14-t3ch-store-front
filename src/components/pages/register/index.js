@@ -12,6 +12,7 @@ export default function Register() {
         password: "",
         confirmPassword: ""
     })
+    const [error , setError] = useState("")
     const navigate = useNavigate()
 
     async function creatUser(e) {
@@ -24,14 +25,18 @@ export default function Register() {
         };
         try {
              await axios.post('http://localhost:5009/sign-up', body);
-      
             navigate("/")
            
 
         } catch (error) {
-            console.error('Deu erro ao fazer o login');
+         
+           setError(error.response.data)
+           alert(error.response.data)
+           
         }
     }
+    console.log(error)
+ 
     return (
         <RegisterGroup>
             <RegisterTitle>T3CH STORE</RegisterTitle>
