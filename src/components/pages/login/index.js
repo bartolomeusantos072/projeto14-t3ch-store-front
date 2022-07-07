@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import { LoginGroup, LoginTitle, LoginInput, LoginDivInput, LoginEntry } from "./style"
 import { useContext } from 'react';
 import TokenContext from '../../../contexts/TokenContext';
+import IdContext from '../../../contexts/IdContext';
 
 
 export default function Login() {
@@ -13,6 +14,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error , setError] = useState("")
     const { setToken } = useContext(TokenContext)
+    const { setId } = useContext(IdContext)
     const navigate = useNavigate()
     async function sendLogin(e) {
         e.preventDefault();
@@ -21,13 +23,15 @@ export default function Login() {
             const { data } = await axios.post('http://localhost:5009/sign-in', body);
             console.log(data)
             setToken(data.token)
-             navigate("/home")
+            setId(data.id)
+             navigate("/home")//tela do nathã
 
         } catch (error) {
             setError(error.response.data)
             swal(error.response.data , "preencha corretamente" , "error") 
         }
     }
+    
 
     return (
         <LoginGroup>
