@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useState } from "react";
+import swal from 'sweetalert';
 import { RegisterGroup, RegisterTitle, RegisterInput, RegisterDivInput, RegisterSpan } from "./style.js"
 
 
@@ -31,7 +32,7 @@ export default function Register() {
         } catch (error) {
          
            setError(error.response.data)
-           alert(error.response.data)
+           swal(error.response.data , "preencha corretamente" , "error")
            
         }
     }
