@@ -10,9 +10,8 @@ import TokenContext from '../../../contexts/TokenContext';
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { token ,  setToken } = useContext(TokenContext)
+    const { setToken } = useContext(TokenContext)
 
-console.log(token)
     async function sendLogin(e) {
         e.preventDefault();
         const body = { email, password };
@@ -28,7 +27,7 @@ console.log(token)
 
     return (
         <LoginGroup>
-            <LoginTitle>T3CH-STORE</LoginTitle>
+            <LoginTitle>T3CH STORE</LoginTitle>
             <LoginDivInput>
                 <LoginInput
                     type="text"
@@ -44,7 +43,7 @@ console.log(token)
                 </LoginInput>
             </LoginDivInput>
             <button type="submit" onClick={sendLogin}><LoginEntry>Entrar</LoginEntry></button>
-            <StyledLink to={"/cadastro"}>
+            <StyledLink to={"/register"}>
                 <h4>Primeira vez? Cadastre-se!</h4>
             </StyledLink>
         </LoginGroup>
