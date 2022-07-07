@@ -13,7 +13,6 @@ export default function Register() {
         password: "",
         confirmPassword: ""
     })
-    const [error , setError] = useState("")
     const navigate = useNavigate()
 
     async function creatUser(e) {
@@ -30,13 +29,10 @@ export default function Register() {
            
 
         } catch (error) {
-         
-           setError(error.response.data)
-           swal(error.response.data , "preencha corretamente" , "error")
-           
+           swal(error.response.data , "preencha corretamente" , "error") 
         }
     }
-    console.log(error)
+
  
     return (
         <RegisterGroup>
