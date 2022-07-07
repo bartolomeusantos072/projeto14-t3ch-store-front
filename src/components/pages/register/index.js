@@ -23,8 +23,8 @@ export default function Register() {
             "confirmPassword": user.confirmPassword
         };
         try {
-            const { data } = await axios.post('http://localhost:5009/sign-up', body);
-            console.log(data)
+             await axios.post('http://localhost:5009/sign-up', body);
+      
             navigate("/")
            
 
