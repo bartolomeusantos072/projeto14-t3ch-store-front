@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 import { useState } from "react";
 import { RegisterGroup, RegisterTitle, RegisterInput, RegisterDivInput, RegisterSpan } from "./style.js"
 
@@ -11,7 +12,26 @@ export default function Register() {
         password: "",
         confirmPassword: ""
     })
-    console.log(user.name)
+    const navigate = useNavigate()
+
+    async function creatUser(e) {
+        e.preventDefault();
+        const body = {
+            "username": user.name,
+            "email": user.email,
+            "password":user.password,
+            "confirmPassword": user.confirmPassword
+        };
+        try {
+            const { data } = await axios.post('http://localhost:5009/sign-up', body);
+            console.log(data)
+            navigate("/")
+           
+
+        } catch (error) {
+            console.error('Deu erro ao fazer o login');
+        }
+    }
     return (
         <RegisterGroup>
             <RegisterTitle>T3CH STORE</RegisterTitle>
@@ -45,7 +65,7 @@ export default function Register() {
                 </RegisterInput>
 
             </RegisterDivInput>
-            <button type="submit" ><RegisterSpan>Cadastrar</RegisterSpan></button>
+            <button type="submit" onClick={creatUser} ><RegisterSpan>Cadastrar</RegisterSpan></button>
             <StyledLink to={"/"}>
                 <h4>Primeira vez? Cadastre-se!</h4>
             </StyledLink>
