@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyles from '../assets/styles/GlobalStyles'
+import HomeProducts from './HomeProducts';
 
 export default function App () {
 
@@ -8,7 +9,7 @@ export default function App () {
             <GlobalStyles />
             <BrowserRouter>
                 <Routes>
-                    
+                    <Route path='/' element={<HomeProducts />} />
                 </Routes>
             </BrowserRouter>
         </>
