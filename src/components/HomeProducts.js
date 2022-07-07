@@ -24,7 +24,7 @@ export default function HomeProducts () {
         <>
             <Header />
             <HomeMain>
-                {products.map( (product, index) => {
+                {products.map( (product, index) => (
                     <Product 
                         key={index} 
                         image={product.url} 
@@ -32,7 +32,7 @@ export default function HomeProducts () {
                         price={product.price} 
                         id={product._id} 
                     />
-                })}
+                ))}
             </HomeMain>
             <MenuFooter />
         </>
