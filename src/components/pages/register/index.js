@@ -13,6 +13,7 @@ export default function Register() {
         password: "",
         confirmPassword: ""
     })
+    const [error , setError] = useState("")
     const navigate = useNavigate()
 
     async function creatUser(e) {
@@ -29,6 +30,7 @@ export default function Register() {
            
 
         } catch (error) {
+            setError(error.response.data)
            swal(error.response.data , "preencha corretamente" , "error") 
         }
     }
@@ -42,6 +44,7 @@ export default function Register() {
                     type="text"
                     placeholder="Nome"
                     value={user.name}
+                    cor={error? "#FFDAB9" : "#FFFAF0"}
                     onChange={e => { setUser({ ...user, name: e.target.value }) }}>
                 </RegisterInput>
 
@@ -49,6 +52,7 @@ export default function Register() {
                     type="text"
                     placeholder="Email"
                     value={user.email}
+                    cor={error? "#FFDAB9" : "#FFFAF0"}
                     onChange={e => { setUser({ ...user, email: e.target.value }) }}>
                 </RegisterInput>
 
@@ -56,6 +60,7 @@ export default function Register() {
                     type="text"
                     placeholder="Senha"
                     value={user.password}
+                    cor={error? "#FFDAB9" : "#FFFAF0"}
                     onChange={e => { setUser({ ...user, password: e.target.value }) }}>
                 </RegisterInput>
 
@@ -63,6 +68,7 @@ export default function Register() {
                     type="text"
                     placeholder="confirmar senha"
                     value={user.confirmPassword}
+                    cor={error? "#FFDAB9" : "#FFFAF0"}
                     onChange={e => { setUser({ ...user, confirmPassword: e.target.value }) }}>
                 </RegisterInput>
 

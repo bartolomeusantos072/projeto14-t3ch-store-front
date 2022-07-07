@@ -37,7 +37,7 @@ width: 326px;
 height: 48px;
 margin-top: 4.7%;
 border-radius: 5%;
-background-color: #FFFFFF;;  
+background-color: ${props => props.cor};  
 border-style: none;
 ::placeholder{
 color:#12292F ;
