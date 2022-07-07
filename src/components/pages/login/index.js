@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import { LoginGroup, LoginTitle, LoginInput, LoginDivInput, LoginEntry } from "./style"
 import { useContext } from 'react';
 import TokenContext from '../../../contexts/TokenContext';
@@ -11,7 +11,7 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { setToken } = useContext(TokenContext)
-
+    const navigate = useNavigate()
     async function sendLogin(e) {
         e.preventDefault();
         const body = { email, password };
@@ -19,6 +19,7 @@ export default function Login() {
             const { data } = await axios.post('http://localhost:5009/sign-in', body);
             console.log(data)
             setToken(data.token)
+             navigate("/home")
 
         } catch (error) {
             console.error(error);
