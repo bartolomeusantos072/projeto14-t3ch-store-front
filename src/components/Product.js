@@ -12,7 +12,7 @@ export default function Product ({ url, name, price, id, cartLength, setCartLeng
 
         e.stopPropagation();
 
-        const API_URI = 'http://localhost:5000';
+        const API_URI = 'http://localhost:5009';
         const ROUTE = '/cart';
 
         const body = {

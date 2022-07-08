@@ -14,7 +14,7 @@ export default function ProductPreview () {
 
     useEffect( () => {
         
-        const API_URI = 'http://localhost:5000';
+        const API_URI = 'http://localhost:5009';
         const ROUTE = `/products/${productId}`;
 
         const promise = axios.get(`${API_URI}${ROUTE}`);

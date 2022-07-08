@@ -11,7 +11,7 @@ export default function HomeProducts () {
     const [products, setProducts] = useState([]);
     const [cartLength, setCartLength] = useState(0);
 
-    const API_URI = 'http://localhost:5000';
+    const API_URI = 'http://localhost:5009';
     const ROUTE = '/products';
 
     useEffect( () => {
