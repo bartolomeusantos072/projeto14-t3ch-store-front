@@ -81,7 +81,7 @@ export default function Register() {
             </RegisterDivInput>
             <button type="submit" onClick={creatUser} ><RegisterSpan>Cadastrar</RegisterSpan></button>
             <StyledLink to={"/"}>
-                <h4>Primeira vez? Cadastre-se!</h4>
+                <h4>Já tem uma conta? Entre agora!!</h4>
             </StyledLink>
         </RegisterGroup>
     )

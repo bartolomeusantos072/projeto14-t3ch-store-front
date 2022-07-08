@@ -24,7 +24,7 @@ export default function Login() {
             console.log(data)
             setToken(data.token)
             setId(data.id)
-             navigate("/home")//tela do nathã
+             navigate("/cart")
 
         } catch (error) {
             setError(error.response.data)
