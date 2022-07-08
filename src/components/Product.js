@@ -1,24 +1,86 @@
 import styled from "styled-components";
 import { IoCartOutline } from 'react-icons/io5'
 import Button from './shared/Button'
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
-export default function Product ({ image, name, price, id }) {
+export default function Product ({ url, name, price, id, cartLength, setCartLength }) {
 
+    const navigate = useNavigate();
+
+    function addToCart (e) {
+
+        e.stopPropagation();
+
+        const API_URI = 'http://localhost:5000';
+        const ROUTE = '/cart';
+
+        const body = {
+            url,
+            name, 
+            price,
+            _id: id
+        };
+
+        const header = {
+            headers: {
+                Authorization: `Bearer ${''}`
+            }
+        };
+        
+        const promise = axios.post(`${API_URI}${ROUTE}`, body, header);
+        promise.then( () => {
+            setCartLength( () => cartLength + 1);
+        });
+        promise.catch( () => alert('Erro ao adicionar o produto ao carrinho!'));
+    };
+
+    async function buy(e) {
+        
+        e.stopPropagation();
+
+        await addToCart(e);
+
+        navigate('/'); // Alterar a rota para a rota de finalização da compra.
+
+    };
+    
     return (
-        <Container>
-            <ProductImage src={image}/>
+        <Container onClick={ () => navigate(`/product/${id}`)}>
+            <ProductImage src={url}/>
             <ProductName>{name}</ProductName>
             <Price>R$ {price}</Price>
             <ButtonsContainer>
-                <Button id={id} >Comprar</Button>
-                <CartIcon id={id} />
+                <Button onClick={ buy } >Comprar</Button>
+                <CartIcon onClick={ addToCart } />
+                <Add>+</Add>
             </ButtonsContainer>
         </Container>
     );
 };
 
+const Add = styled.div`
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #0E1A1E;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+
+    position: absolute;
+    top: 4px;
+    right: 19px;
+`;
+
 const ProductImage = styled.img`
-    width: 170px;
+    width: 100%;
     height: 110px;
     object-fit: cover;
     background-color: #FFFFFF;
@@ -34,7 +96,7 @@ const ProductName = styled.div`
     font-size: 16px;
     font-weight: bold;
     vertical-align: top;
-    color: #000000;
+    color: #012026;
     word-wrap: break-word;
 `;
 
@@ -42,23 +104,18 @@ const Price = styled.div`
     font-family: 'Exo 2';
     font-size: 22px;
     font-weight: bold;
-    color: #000000;
+    color: #012026;
 
     margin: 10px 0;
-`;
-
-const ContentContainer = styled.div`
-    width: 100%;
-    height: calc(100% - 36px);
-    background-color: #FFFFFF;
-
-    margin-bottom: 5px;
 `;
 
 const CartIcon = styled(IoCartOutline)`
     font-size: 35px;
     color: #0E1A1E;
     margin: 0 auto;
+    cursor: pointer;
+
+    position: relative;
 `;
 
 const ButtonsContainer = styled.div`
@@ -67,6 +124,8 @@ const ButtonsContainer = styled.div`
 
     width: 100%;
     height: 36px;
+
+    position: relative;
 `;
 
 const Container = styled.div`

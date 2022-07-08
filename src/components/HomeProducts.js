@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 export default function HomeProducts () {
 
     const [products, setProducts] = useState([]);
+    const [cartLength, setCartLength] = useState(0);
 
     const API_URI = 'http://localhost:5000';
     const ROUTE = '/products';
@@ -27,14 +28,16 @@ export default function HomeProducts () {
                 {products.map( (product, index) => (
                     <Product 
                         key={index} 
-                        image={product.url} 
+                        url={product.url} 
                         name={product.name} 
                         price={product.price} 
-                        id={product._id} 
+                        id={product._id}
+                        setCartLength={setCartLength}
+                        cartLength={cartLength}
                     />
                 ))}
             </HomeMain>
-            <MenuFooter />
+            <MenuFooter cartLength={cartLength} />
         </>
     );
 };
