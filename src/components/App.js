@@ -12,13 +12,13 @@ import CartContext from '../contexts/cartContext';
 export default function App() {
 
     const [token, setToken] = useState("")
-    const [id, setId] = useState("")
+    const [userId, setUserId] = useState("")
     const [cartLength, setCartLength] = useState(0);
 
     return (
         <>
             <TokenContext.Provider value={{ token, setToken }}>
-                <IdContext.Provider value={{ id, setId }}>
+                <IdContext.Provider value={{ userId, setUserId }}>
                     <CartContext.Provider value={{ cartLength, setCartLength }} >
 
                         <GlobalStyles />

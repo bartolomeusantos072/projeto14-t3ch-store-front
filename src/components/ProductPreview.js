@@ -7,12 +7,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import axios from 'axios';
 import CartContext from "../contexts/cartContext";
+import IdContext from "../contexts/IdContext";
 
 export default function ProductPreview () {
 
     const { productId } = useParams();
     const [productInf, setProductInf] = useState({});
-    const { cartLength, setCartLength } = useContext(CartContext)
+    const { cartLength, setCartLength } = useContext(CartContext);
+    const { userId } = useContext(IdContext);
     const navigate = useNavigate();
 
     useEffect( () => {
@@ -40,6 +42,7 @@ export default function ProductPreview () {
             url,
             name, 
             price,
+            userId,
             productId: _id,
             amount: 1
         };

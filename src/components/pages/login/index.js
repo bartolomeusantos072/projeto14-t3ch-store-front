@@ -14,7 +14,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error , setError] = useState("")
     const { setToken } = useContext(TokenContext)
-    const { setId } = useContext(IdContext)
+    const { setUserId } = useContext(IdContext)
     const navigate = useNavigate()
     async function sendLogin(e) {
         e.preventDefault();
@@ -22,7 +22,7 @@ export default function Login() {
         try {
             const { data } = await axios.post('http://localhost:5009/sign-in', body);
             setToken(data.token)
-            setId(data.id)
+            setUserId(data.id)
             navigate("/home")
         } catch (error) {
             setError(error.response.data)

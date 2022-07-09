@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useContext } from "react";
 import CartContext from "../contexts/cartContext";
+import IdContext from "../contexts/IdContext";
 
 export default function Product ({ url, name, price, id }) {
 
     const navigate = useNavigate();
     const { cartLength, setCartLength } = useContext(CartContext);
+    const { userId } = useContext(IdContext);
 
     function addToCart (e) {
 
@@ -22,6 +24,7 @@ export default function Product ({ url, name, price, id }) {
             url,
             name, 
             price,
+            userId,
             productId: id,
             amount: 1
         };
