@@ -24,8 +24,8 @@ export default function Login() {
             console.log(data)
             setToken(data.token)
             setId(data.id)
-             navigate("/cart")
-
+            navigate("/home")
+            console.log('passei aqui')
         } catch (error) {
             setError(error.response.data)
             swal(error.response.data , "preencha corretamente" , "error") 
