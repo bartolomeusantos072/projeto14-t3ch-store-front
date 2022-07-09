@@ -21,11 +21,9 @@ export default function Login() {
         const body = { email, password };
         try {
             const { data } = await axios.post('http://localhost:5009/sign-in', body);
-            console.log(data)
             setToken(data.token)
             setId(data.id)
             navigate("/home")
-            console.log('passei aqui')
         } catch (error) {
             setError(error.response.data)
             swal(error.response.data , "preencha corretamente" , "error") 
