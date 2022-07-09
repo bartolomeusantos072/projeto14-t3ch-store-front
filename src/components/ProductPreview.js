@@ -3,14 +3,17 @@ import Main from "./shared/Main";
 import Header from "./shared/Header";
 import MenuFooter from "./shared/MenuFooter";
 import Button from "./shared/Button";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import axios from 'axios';
+import CartContext from "../contexts/cartContext";
 
 export default function ProductPreview () {
 
     const { productId } = useParams();
     const [productInf, setProductInf] = useState({});
+    const { cartLength, setCartLength } = useContext(CartContext)
+    const navigate = useNavigate();
 
     useEffect( () => {
         
@@ -24,7 +27,45 @@ export default function ProductPreview () {
 
     }, [setProductInf]);
 
-    const { url, name, price, description } = productInf;
+    const { url, name, price, description, _id } = productInf;
+
+    function addToCart (e) {
+
+        e.stopPropagation();
+
+        const API_URI = 'http://localhost:5009';
+        const ROUTE = '/cart';
+
+        const body = {
+            url,
+            name, 
+            price,
+            productId: _id,
+            amount: 1
+        };
+
+        const header = {
+            headers: {
+                Authorization: `Bearer ${''}`
+            }
+        };
+        
+        const promise = axios.post(`${API_URI}${ROUTE}`, body, header);
+        promise.then( () => {
+            setCartLength( () => cartLength + 1);
+        });
+        promise.catch( () => alert('Erro ao adicionar o produto ao carrinho!'));
+    };
+
+    async function buy(e) {
+        
+        e.stopPropagation();
+
+        await addToCart(e);
+
+        navigate(''); // Alterar a rota para a rota de finalização da compra.
+
+    };
 
     return (
         <>
@@ -33,8 +74,8 @@ export default function ProductPreview () {
                 <ProductImage src={url} />
                 <ProductName>{name}</ProductName>
                 <Price>R$ ${price}</Price>
-                <ModButton>Comprar agora</ModButton>
-                <ModButton>Adicionar ao carrinho</ModButton>
+                <ModButton onClick={ buy } >Comprar agora</ModButton>
+                <ModButton onClick={ addToCart } >Adicionar ao carrinho</ModButton>
                 <Description>{description}</Description>
             </Main>
             <MenuFooter />

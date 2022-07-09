@@ -3,10 +3,13 @@ import { IoCartOutline } from 'react-icons/io5'
 import Button from './shared/Button'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { useContext } from "react";
+import CartContext from "../contexts/cartContext";
 
-export default function Product ({ url, name, price, id, cartLength, setCartLength }) {
+export default function Product ({ url, name, price, id }) {
 
     const navigate = useNavigate();
+    const { cartLength, setCartLength } = useContext(CartContext);
 
     function addToCart (e) {
 
@@ -19,7 +22,8 @@ export default function Product ({ url, name, price, id, cartLength, setCartLeng
             url,
             name, 
             price,
-            _id: id
+            productId: id,
+            amount: 1
         };
 
         const header = {
@@ -41,7 +45,7 @@ export default function Product ({ url, name, price, id, cartLength, setCartLeng
 
         await addToCart(e);
 
-        navigate('/'); // Alterar a rota para a rota de finalização da compra.
+        navigate(''); // Alterar a rota para a rota de finalização da compra.
 
     };
     

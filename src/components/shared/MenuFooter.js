@@ -1,30 +1,32 @@
 import styled from "styled-components"
 import { IoCartOutline, IoPersonOutline, IoHomeOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CartContext from "../../contexts/cartContext";
 
-export default function MenuFooter ({ cartLength  }) {
+export default function MenuFooter () {
 
     const navigate = useNavigate();
-    const [buttonStatus, setButtonStatus] = useState([true, false, false])
+    const [buttonStatus, setButtonStatus] = useState([true, false, false]);
+    const { cartLength } = useContext(CartContext);
     
     return (
         <Container>
             <ActiveButton active={buttonStatus[0]} >
                 <StyledHome onClick={ () => {
-                    navigate('/');
+                    navigate('/home');
                     setButtonStatus([true, false, false]);
                 }}/>
             </ActiveButton>
             <ActiveButton active={buttonStatus[1]} >
                 <StyledPerson onClick={ () => {
-                    navigate('/');
+                    navigate(''); // Alterar a rota para a rota do perfil do usuário.
                     setButtonStatus([false, true, false]);
                 }}/>
             </ActiveButton>
             <ActiveButton active={buttonStatus[2]} >
                 <StyledCart onClick={ () => {
-                    navigate('/');
+                    navigate(''); // Alterar a rota para a rota de finalização da compra.
                     setButtonStatus([false, false, true]);
                 }}/>
                 <Count>{cartLength}</Count>
