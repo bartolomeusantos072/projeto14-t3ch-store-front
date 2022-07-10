@@ -24,7 +24,7 @@ export default function Login() {
             console.log(data)
             setToken(data.token)
             setId(data.id)
-             navigate("/cart")
+             navigate("/home")
 
         } catch (error) {
             setError(error.response.data)
@@ -45,7 +45,7 @@ export default function Login() {
                     onChange={e => setEmail(e.target.value)}
                 ></LoginInput>
                 <LoginInput
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     value={password}
                     cor={error? "#FFDAB9" : "#FFFAF0"}
