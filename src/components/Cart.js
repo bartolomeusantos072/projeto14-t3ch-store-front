@@ -7,9 +7,11 @@ import axios from "axios"
 import TokenContext from "../contexts/TokenContext"
 import Button from "./shared/Button"
 import styled from "styled-components"
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart () {
 
+    const navigate = useNavigate();
     const [cartProducts, setCartProducts] = useState([]);
     const { token } = useContext(TokenContext);
 
@@ -26,16 +28,16 @@ export default function Cart () {
         return total
     };
 
+    const header = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
     useEffect( () => {
 
         const API_URL = 'https://t3ch-store.herokuapp.com';
         const ROUTE = '/cart';
-
-        const header = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        };
 
         const promise = axios.get(`${API_URL}${ROUTE}`, header);
         promise.then( response => {
@@ -43,6 +45,18 @@ export default function Cart () {
         });
 
     }, []);
+
+    function finalizeOrder () {
+
+        const API_URI = 'https://t3ch-store.herokuapp.com';
+        const ROUTE = '/cart';
+
+        const promise = axios.delete(`${API_URI}${ROUTE}`, header);
+
+        promise.then( () => {
+            navigate('/order-finalization');
+        });
+    };
 
     return (
         <>
@@ -59,7 +73,7 @@ export default function Cart () {
                 ))}
                 <PlaceOrder>
                     <SubTotal>Subtotal: R$ {cartProducts.length ? `${calcTotalPrice ()},00` : 0}</SubTotal>
-                    <Button>Finalizar pedido</Button>
+                    <Button onClick={finalizeOrder} >Finalizar pedido</Button>
                 </PlaceOrder>
             </StyledMain>
             <MenuFooter />

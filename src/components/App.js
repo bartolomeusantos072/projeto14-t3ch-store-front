@@ -9,6 +9,7 @@ import Register from './pages/register';
 import IdContext from '../contexts/IdContext';
 import CartContext from '../contexts/cartContext';
 import Cart from './Cart';
+import FinalizationPage from './FinalizationPage';
 
 
 export default function App() {
@@ -30,12 +31,13 @@ export default function App() {
                                 <Route path="/register" element={<Register />} />
                                 <Route path='/home' element={ <HomeProducts /> } />
                                 <Route path='product/:productId' element={ <ProductPreview /> } />
-                                <Route path='/cart' element={ <Cart />} />
+                                <Route path='/cart' element={ <Cart /> } />
+                                <Route path='/order-finalization' element={ <FinalizationPage /> } />
                             </Routes>
                         </BrowserRouter>
                     </CartContext.Provider>
                 </IdContext.Provider>
             </TokenContext.Provider>
         </>
-    )
+    );
 };
