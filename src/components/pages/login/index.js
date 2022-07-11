@@ -20,7 +20,7 @@ export default function Login() {
         e.preventDefault();
         const body = { email, password };
         try {
-            const { data } = await axios.post('http://localhost:5009/sign-in', body);
+            const { data } = await axios.post('https://t3ch-store.herokuapp.com/sign-in', body);
             setToken(data.token)
             setUserId(data.id)
             navigate("/home")

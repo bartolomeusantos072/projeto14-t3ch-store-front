@@ -28,7 +28,7 @@ export default function Cart () {
 
     useEffect( () => {
 
-        const API_URL = 'http://localhost:5009';
+        const API_URL = 'https://t3ch-store.herokuapp.com';
         const ROUTE = '/cart';
 
         const header = {

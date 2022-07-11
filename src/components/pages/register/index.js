@@ -29,7 +29,7 @@ export default function Register() {
         };
 
         try {
-             await axios.post('http://localhost:5009/sign-up', body);
+             await axios.post('https://t3ch-store.herokuapp.com/sign-up', body);
             navigate("/")
            
 

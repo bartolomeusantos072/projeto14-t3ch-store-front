@@ -19,7 +19,7 @@ export default function ProductPreview () {
 
     useEffect( () => {
         
-        const API_URI = 'http://localhost:5009';
+        const API_URI = 'https://t3ch-store.herokuapp.com';
         const ROUTE = `/products/${productId}`;
 
         const promise = axios.get(`${API_URI}${ROUTE}`);
