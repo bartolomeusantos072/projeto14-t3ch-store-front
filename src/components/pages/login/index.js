@@ -14,17 +14,16 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error , setError] = useState("")
     const { setToken } = useContext(TokenContext)
-    const { setId } = useContext(IdContext)
+    const { setUserId } = useContext(IdContext)
     const navigate = useNavigate()
     async function sendLogin(e) {
         e.preventDefault();
         const body = { email, password };
         try {
             const { data } = await axios.post('http://localhost:5009/sign-in', body);
-            console.log(data)
             setToken(data.token)
-            setId(data.id)
-             navigate("/home")
+            setUserId(data.id)
+            navigate("/home")
 
         } catch (error) {
             setError(error.response.data)
