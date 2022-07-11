@@ -6,7 +6,7 @@ import axios from "axios";
 import { useContext } from "react";
 import CartContext from "../contexts/cartContext";
 import IdContext from "../contexts/IdContext";
-import cartIdContext from "../contexts/cartIdContext";
+
 
 
 export default function Product ({ url, name, price, id }) {
@@ -14,7 +14,7 @@ export default function Product ({ url, name, price, id }) {
     const navigate = useNavigate();
     const { cartLength, setCartLength } = useContext(CartContext);
     const { userId } = useContext(IdContext);
-    const {cartid , setCartid} = useContext(cartIdContext)
+  
 
     function addToCart (e) {
         e.stopPropagation();
@@ -48,7 +48,7 @@ export default function Product ({ url, name, price, id }) {
         });
         promise.catch( () => alert('Erro ao adicionar o produto ao carrinho!'));
     };
-    console.log(cartid)
+
 
     async function buy(e) {
         
