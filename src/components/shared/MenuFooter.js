@@ -26,7 +26,7 @@ export default function MenuFooter () {
             </ActiveButton>
             <ActiveButton active={buttonStatus[2]} >
                 <StyledCart onClick={ () => {
-                    navigate(''); // Alterar a rota para a rota de finalização da compra.
+                    navigate('/cart'); // Alterar a rota para a rota de finalização da compra.
                     setButtonStatus([false, false, true]);
                 }}/>
                 <Count>{cartLength}</Count>

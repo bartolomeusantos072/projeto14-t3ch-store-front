@@ -29,7 +29,7 @@ const RegisterTitle = styled.h1`
 font-family: "Saira Stencil One";
 color: #00FF7A;
 font-size: 36px;
-margin-top: 5%;
+
 
 `
 
