@@ -5,13 +5,27 @@ import CartProduct from "./CartProduct"
 import { useEffect, useContext, useState } from "react"
 import axios from "axios"
 import TokenContext from "../contexts/TokenContext"
+import Button from "./shared/Button"
+import styled from "styled-components"
 
 export default function Cart () {
 
     const [cartProducts, setCartProducts] = useState([]);
     const { token } = useContext(TokenContext);
 
-    //console.log(` ao carregar a tela ${userId}`)
+    function calcTotalPrice () {
+
+        let total = 0
+        cartProducts.forEach( product => {
+            let price = product.price;
+            let amount = product.amount;
+            price = price.replace(',', '.');
+            total += Number(price) * amount;
+            console.log(total)
+        });
+        return total
+    };
+
     useEffect( () => {
 
         const API_URL = 'http://localhost:5009';
@@ -25,7 +39,6 @@ export default function Cart () {
 
         const promise = axios.get(`${API_URL}${ROUTE}`, header);
         promise.then( response => {
-            console.log(` dentro da requisição ${[...response.data]}`)
             setCartProducts([...response.data]);
         });
 
@@ -34,7 +47,7 @@ export default function Cart () {
     return (
         <>
             <Header />
-            <Main>
+            <StyledMain>
                 { cartProducts.map( (product,index) => (
                     <CartProduct 
                         key={index}
@@ -44,8 +57,38 @@ export default function Cart () {
                         amount={product.amount}
                     />
                 ))}
-            </Main>
+                <PlaceOrder>
+                    <SubTotal>Subtotal: R$ {cartProducts.length ? `${calcTotalPrice ()},00` : 0}</SubTotal>
+                    <Button>Finalizar pedido</Button>
+                </PlaceOrder>
+            </StyledMain>
             <MenuFooter />
         </>
     );
 };
+
+const StyledMain = styled(Main)`
+    padding-top: 15px;
+`;
+
+const PlaceOrder = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: calc(100% - 50px);
+    height: 100px;
+    padding: 5px;
+    border-radius: 10px;
+
+    background-color: #FFFFFF;
+
+    position: absolute;
+    bottom: 15px;
+`;
+
+const SubTotal = styled.div`
+    font-family: 'Exo 2';
+    font-size: 22px;
+    font-weight: bold;
+    color: #012026;
+`;
