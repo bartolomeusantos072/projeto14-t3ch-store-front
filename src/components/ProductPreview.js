@@ -104,11 +104,9 @@ const ProductImage = styled.img`
 `;
 
 const ProductName = styled.div`
-
     width: 100%;
     margin-top: 25px;
     margin-bottom: auto;
-
     font-family: 'Roboto';
     font-size: 22px;
     line-height: 28px;
@@ -122,12 +120,10 @@ const Price = styled.div`
     font-size: 28px;
     font-weight: bold;
     color: #FFFFFF;
-
     margin: 30px 0;
 `;
 
 const Description = styled.div`
-
     width: 100%;
     margin-top: 40px;
     font-family: 'Roboto';
