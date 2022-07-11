@@ -40,7 +40,7 @@ background-color: ${props => props.cor};
 border-style: none;
 ::placeholder{
 color:#12292F ;
-font-family:"Exo 2, sans-serif" ;
+font-family:"Exo 2" ;
 margin-left: 5%;
 font-size: 15px;
 }

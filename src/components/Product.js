@@ -7,6 +7,8 @@ import { useContext } from "react";
 import CartContext from "../contexts/cartContext";
 import IdContext from "../contexts/IdContext";
 
+
+
 export default function Product ({ url, name, price, id }) {
 
     const navigate = useNavigate();
@@ -19,7 +21,7 @@ export default function Product ({ url, name, price, id }) {
 
         const API_URI = 'http://localhost:5009';
         const ROUTE = '/cart';
-
+       
         const body = {
             url,
             name, 
@@ -28,7 +30,7 @@ export default function Product ({ url, name, price, id }) {
             productId: id,
             amount: 1
         };
-
+        
         const header = {
             headers: {
                 Authorization: `Bearer ${''}`
@@ -36,7 +38,9 @@ export default function Product ({ url, name, price, id }) {
         };
         
         const promise = axios.post(`${API_URI}${ROUTE}`, body, header);
-        promise.then( () => {
+        promise.then( (response) => {
+          
+            //console.log(response.data)
             setCartLength( () => cartLength + 1);
         });
         promise.catch( () => alert('Erro ao adicionar o produto ao carrinho!'));
@@ -45,13 +49,13 @@ export default function Product ({ url, name, price, id }) {
     async function buy(e) {
         
         e.stopPropagation();
-
+      console.log("compro")
         await addToCart(e);
-
+        
         navigate(''); // Alterar a rota para a rota de finalização da compra.
 
     };
-    
+
     return (
         <Container onClick={ () => navigate(`/product/${id}`)}>
             <ProductImage src={url}/>

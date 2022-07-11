@@ -8,28 +8,29 @@ import Login from './pages/login';
 import Register from './pages/register';
 import IdContext from '../contexts/IdContext';
 import CartContext from '../contexts/cartContext';
+import Cart from './Cart';
+
 
 export default function App() {
 
     const [token, setToken] = useState("")
     const [userId, setUserId] = useState("")
     const [cartLength, setCartLength] = useState(0);
+  
 
     return (
         <>
             <TokenContext.Provider value={{ token, setToken }}>
                 <IdContext.Provider value={{ userId, setUserId }}>
-                    <CartContext.Provider value={{ cartLength, setCartLength }} >
-
+                    <CartContext.Provider value={{ cartLength, setCartLength }} >  
                         <GlobalStyles />
                         <BrowserRouter>
                             <Routes>
                                 <Route path="/" element={<Login />} />
                                 <Route path="/register" element={<Register />} />
-                                <Route path='/products' element={ <HomeProducts /> } />
-                                <Route path='product/:productId' element={ <ProductPreview /> } />
                                 <Route path='/home' element={ <HomeProducts /> } />
                                 <Route path='product/:productId' element={ <ProductPreview /> } />
+                                <Route path='/cart' element={ <Cart />} />
                             </Routes>
                         </BrowserRouter>
                     </CartContext.Provider>
