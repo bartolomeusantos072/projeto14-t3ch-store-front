@@ -19,7 +19,7 @@ export default function Product ({ url, name, price, id }) {
 
         e.stopPropagation();
 
-        const API_URI = 'http://localhost:5009';
+        const API_URI = 'https://t3ch-store.herokuapp.com';
         const ROUTE = '/cart';
        
         const body = {

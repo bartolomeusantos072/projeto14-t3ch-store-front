@@ -10,7 +10,7 @@ export default function HomeProducts () {
 
     const [products, setProducts] = useState([]);
 
-    const API_URI = 'http://localhost:5009';
+    const API_URI = 'https://t3ch-store.herokuapp.com';
     const ROUTE = '/products';
 
     useEffect( () => {
