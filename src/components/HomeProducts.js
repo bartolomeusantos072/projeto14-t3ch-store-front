@@ -17,7 +17,7 @@ export default function HomeProducts () {
         const promise = axios.get(`${API_URI}${ROUTE}`);
         promise.then( response => {
             setProducts(response.data);
-            console.log(response.data)
+            //console.log(response.data)
         });
     }, [setProducts]);
 

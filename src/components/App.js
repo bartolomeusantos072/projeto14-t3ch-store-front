@@ -5,7 +5,6 @@ import HomeProducts from './HomeProducts';
 import ProductPreview from './ProductPreview';
 import TokenContext from '../contexts/TokenContext';
 import Login from './pages/login';
-import Cart from './Cart';
 import Register from './pages/register';
 import IdContext from '../contexts/IdContext';
 import CartContext from '../contexts/cartContext';

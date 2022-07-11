@@ -18,12 +18,12 @@ export default function MenuFooter () {
                     setButtonStatus([true, false, false]);
                 }}/>
             </ActiveButton>
-            <ActiveButton active={buttonStatus[1]} >
+            {/* <ActiveButton active={buttonStatus[1]} >
                 <StyledPerson onClick={ () => {
                     navigate(''); // Alterar a rota para a rota do perfil do usuário.
                     setButtonStatus([false, true, false]);
                 }}/>
-            </ActiveButton>
+            </ActiveButton> */}
             <ActiveButton active={buttonStatus[2]} >
                 <StyledCart onClick={ () => {
                     navigate('/cart'); // Alterar a rota para a rota de finalização da compra.

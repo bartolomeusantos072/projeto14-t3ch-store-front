@@ -14,11 +14,10 @@ export default function Product ({ url, name, price, id }) {
     const navigate = useNavigate();
     const { cartLength, setCartLength } = useContext(CartContext);
     const { userId } = useContext(IdContext);
-  
 
     function addToCart (e) {
+
         e.stopPropagation();
-      
 
         const API_URI = 'http://localhost:5009';
         const ROUTE = '/cart';
@@ -32,7 +31,6 @@ export default function Product ({ url, name, price, id }) {
             amount: 1
         };
         
-
         const header = {
             headers: {
                 Authorization: `Bearer ${''}`
@@ -42,12 +40,11 @@ export default function Product ({ url, name, price, id }) {
         const promise = axios.post(`${API_URI}${ROUTE}`, body, header);
         promise.then( (response) => {
           
-            console.log(response.data)
+            //console.log(response.data)
             setCartLength( () => cartLength + 1);
         });
         promise.catch( () => alert('Erro ao adicionar o produto ao carrinho!'));
     };
-
 
     async function buy(e) {
         
@@ -59,7 +56,6 @@ export default function Product ({ url, name, price, id }) {
 
     };
 
-    
     return (
         <Container onClick={ () => navigate(`/product/${id}`)}>
             <ProductImage src={url}/>
