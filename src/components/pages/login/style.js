@@ -6,7 +6,7 @@ flex-direction: column;
 background-color: #012026;
 width: 100vw;
 height: 100vh;
-padding-top: 47%;
+justify-content: center;
 align-items: center;
 button{
          margin-top: 15px;

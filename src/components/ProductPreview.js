@@ -27,7 +27,7 @@ export default function ProductPreview () {
             setProductInf(response.data);
         });
 
-    }, [setProductInf]);
+    }, []);
 
     const { url, name, price, description, _id } = productInf;
 

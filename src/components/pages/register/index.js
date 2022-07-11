@@ -63,7 +63,7 @@ export default function Register() {
                 </RegisterInput>
 
                 <RegisterInput
-                    type="text"
+                    type="password"
                     placeholder="Senha"
                     value={user.password}
                     cor={error? "#FFDAB9" : "#FFFAF0"}
@@ -71,7 +71,7 @@ export default function Register() {
                 </RegisterInput>
 
                 <RegisterInput
-                    type="text"
+                    type="password"
                     placeholder="confirmar senha"
                     value={user.confirmPassword}
                     cor={error? "#FFDAB9" : "#FFFAF0"}

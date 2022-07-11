@@ -7,7 +7,7 @@ flex-direction: column;
 background-color: #012026;
 width: 100vw;
 height: 100vh;
-padding-top: 30%;
+justify-content: center;
 align-items: center;
 button{
          margin-top: 15px;
@@ -29,6 +29,7 @@ const RegisterTitle = styled.h1`
 font-family: "Saira Stencil One";
 color: #00FF7A;
 font-size: 36px;
+
 
 `
 

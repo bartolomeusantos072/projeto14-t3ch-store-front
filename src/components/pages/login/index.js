@@ -24,6 +24,7 @@ export default function Login() {
             setToken(data.token)
             setUserId(data.id)
             navigate("/home")
+
         } catch (error) {
             setError(error.response.data)
             swal(error.response.data , "preencha corretamente" , "error") 
@@ -43,7 +44,7 @@ export default function Login() {
                     onChange={e => setEmail(e.target.value)}
                 ></LoginInput>
                 <LoginInput
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     value={password}
                     cor={error? "#FFDAB9" : "#FFFAF0"}
