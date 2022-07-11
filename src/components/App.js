@@ -8,6 +8,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import IdContext from '../contexts/IdContext';
 import CartContext from '../contexts/cartContext';
+import Cart from './Cart';
 
 export default function App() {
 
@@ -26,10 +27,9 @@ export default function App() {
                             <Routes>
                                 <Route path="/" element={<Login />} />
                                 <Route path="/register" element={<Register />} />
-                                <Route path='/products' element={ <HomeProducts /> } />
-                                <Route path='product/:productId' element={ <ProductPreview /> } />
                                 <Route path='/home' element={ <HomeProducts /> } />
                                 <Route path='product/:productId' element={ <ProductPreview /> } />
+                                <Route path='/cart' element={ <Cart />} />
                             </Routes>
                         </BrowserRouter>
                     </CartContext.Provider>
